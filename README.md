@@ -27,13 +27,6 @@
                     adapter.notifyDataSetChanged();
                 })
                 .build();
-        searchEdit.setOnKeyListener((v, keyCode, event) -> {
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP || keyCode == KeyEvent.KEYCODE_SEARCH) {
-                keyword = searchEdit.getText().toString();
-                getData(true);
-            }
-            return false;
-        });
     }
 
     private void getData() {
