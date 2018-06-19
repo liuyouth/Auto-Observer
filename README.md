@@ -3,7 +3,7 @@
 基于RxJava 2.0 
 
 # 本Simple使用的第三方库
-`SmartRefreshLayout``LoadSir``MultiType``butterknife``retrofit2``Rxjava2`
+`SmartRefreshLayout`   `LoadSir`   `MultiType`   `butterknife`   `retrofit2`   `Rxjava2`
 
 内置对 SmartRefreshLayout ,LoadSir 的适配器。
 刷新加载框架使用 SmartRefreshLayout 
