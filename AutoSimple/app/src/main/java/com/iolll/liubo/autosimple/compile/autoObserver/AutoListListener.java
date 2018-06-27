@@ -63,7 +63,6 @@ public class AutoListListener<T> implements Observer<T> {
     }
 
 
-
     @Override
     public void onSubscribe(Disposable d) {
         if (isDebug)
@@ -79,6 +78,7 @@ public class AutoListListener<T> implements Observer<T> {
             System.out.println("onNext");
         if (isNotNull(onSuccess))
             onSuccess.accept(t);
+        if (isNotNull(autoRefreshObserver))
         page++;
         if (isRefresh) {
             if (handlefilter(isNull(onRefresh), "")) {
@@ -91,10 +91,10 @@ public class AutoListListener<T> implements Observer<T> {
                 onLoadMore.accept(t);
 
             }
-            if (handlefilter(null == autoRefreshObserver, "smartRefreshLayout  is not set"))
+            if (handlefilter(isNull(autoRefreshObserver), "smartRefreshLayout  is not set"))
                 autoRefreshObserver.finishLoadMore();
         }
-        if (handlefilter(null == onComplete, ""))
+        if (handlefilter(isNull(onComplete), ""))
             onComplete.accept(t);
         if (isNotNull(autoSwitchStatusPageObserver))
             autoSwitchStatusPageObserver.onSuccess();
@@ -113,16 +113,17 @@ public class AutoListListener<T> implements Observer<T> {
                         onFailed.accept(apiException);
                     break;
                 default:
-                    if (null != onErrors)
+                    if (isNotNull(onErrors))
                         onErrors.accept(apiException);
                     break;
             }
-        } else if (null != onErrors)
+        } else if (isNotNull(onErrors))
             onErrors.accept(new ApiException(e, HTTPCODE.UNINTERCEPT));
-        if (null != onEnd)
+        if (isNotNull(onEnd))
             onEnd.run();
-        if (1 != page)
-            page--;
+        if (isNotNull(autoRefreshObserver))
+            if (1 != page)
+                page--;
     }
 
     @Override
@@ -352,6 +353,7 @@ public class AutoListListener<T> implements Observer<T> {
                 }
             }
     }
+
     private void defaultErrors() {
         if (handlefilter(null == getItems(), "items is not set"))
             if (0 == getItems().size()) {
