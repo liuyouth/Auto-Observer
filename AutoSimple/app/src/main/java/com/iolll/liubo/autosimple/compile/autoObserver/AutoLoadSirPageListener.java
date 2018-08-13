@@ -10,7 +10,7 @@ import com.kingja.loadsir.core.LoadService;
 /**
  * Created by LiuBo on 2018/6/15.
  */
-public class AutoLoadSirPageListener implements AutoSwitchStatusPageObserver {
+public class AutoLoadSirPageListener implements AutoSwitchStatusPageListener {
     private LoadService loadService;
 
     public AutoLoadSirPageListener(LoadService loadService) {

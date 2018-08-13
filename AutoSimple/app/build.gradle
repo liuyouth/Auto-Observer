@@ -86,4 +86,6 @@ dependencies {
         exclude group: 'com.android.support'
     })
     implementation 'com.android.support:cardview-v7:27.1.1'
+    api 'com.uber.autodispose:autodispose-android-archcomponents:0.8.0'
+    implementation 'com.blankj:utilcode:1.18.0'
 }

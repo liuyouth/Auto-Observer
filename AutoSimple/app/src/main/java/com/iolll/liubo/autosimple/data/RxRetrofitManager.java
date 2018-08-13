@@ -2,7 +2,6 @@ package com.iolll.liubo.autosimple.data;
 
 import android.util.Log;
 
-
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -14,7 +13,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.iolll.liubo.autosimple.utils.Utils.DEBUG;
+import static com.iolll.liubo.autosimple.utils.MyUtils.DEBUG;
 
 
 /**
@@ -38,7 +37,7 @@ public class RxRetrofitManager {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request()
                         .newBuilder()
-//                        .addHeader("version", AppUtils.getVersionName(Utils.getContext()))
+//                        .addHeader("version", AppUtils.getVersionName(MyUtils.getContext()))
 //                        .addHeader("token", MyApplication.tokenCode)
 //                        .addHeader("os", AppDeviceUtils.getSDKVersionName())
 //                        .addHeader("from", "android")
@@ -56,7 +55,6 @@ public class RxRetrofitManager {
             public void log(String message) {
                 if (DEBUG)
                     Log.i("OkHttpInterceptor----->", message);
-
             }
         });
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

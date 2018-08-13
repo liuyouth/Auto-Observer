@@ -12,16 +12,17 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import me.drakeet.multitype.Items;
 
-import static com.iolll.liubo.autosimple.utils.Utils.handlefilter;
-import static com.iolll.liubo.autosimple.utils.Utils.isNotNull;
-import static com.iolll.liubo.autosimple.utils.Utils.isNull;
-import static com.iolll.liubo.autosimple.utils.Utils.isNullDefault;
+import static com.iolll.liubo.autosimple.utils.MyUtils.handlefilter;
+import static com.iolll.liubo.autosimple.utils.MyUtils.isNotNull;
+import static com.iolll.liubo.autosimple.utils.MyUtils.isNull;
+import static com.iolll.liubo.autosimple.utils.MyUtils.isNullDefault;
 
 
 /**
+ * 列表自动观察者
  * Created by LiuBo on 2018/6/15.
  */
-public class AutoListListener<T> implements Observer<T> {
+public class AutoListObserver<T> implements Observer<T> {
     boolean isDebug = true;
     private int page;
     private boolean isRefresh = false;
@@ -34,7 +35,7 @@ public class AutoListListener<T> implements Observer<T> {
     private Consumer<? super ApiException> onErrors;
     private Action onEnd;
     private AutoRefreshListener autoRefreshObserver;
-    private AutoSwitchStatusPageObserver autoSwitchStatusPageObserver;
+    private AutoSwitchStatusPageListener autoSwitchStatusPageObserver;
 
     //    setPage(builder.page);
 //    setItems(builder.items);
@@ -47,7 +48,7 @@ public class AutoListListener<T> implements Observer<T> {
 //    setOnErrors(isNullDefault(builder.onErrors, e -> defaultFailed()));
 //    setOnErrors(isNullDefault(builder.onFailed, e -> defaultFailed()));
 //    setAutoSwitchStatusPageObserver(builder.autoSwitchStatusPageObserver);
-    private AutoListListener(Builder<T> builder) {
+    private AutoListObserver(Builder<T> builder) {
         setPage(builder.page);
         setItems(builder.items);
         setOnEnd(builder.onEnd);
@@ -79,7 +80,7 @@ public class AutoListListener<T> implements Observer<T> {
         if (isNotNull(onSuccess))
             onSuccess.accept(t);
         if (isNotNull(autoRefreshObserver))
-        page++;
+            page++;
         if (isRefresh) {
             if (handlefilter(isNull(onRefresh), "")) {
                 onRefresh.accept(t);
@@ -138,7 +139,7 @@ public class AutoListListener<T> implements Observer<T> {
         return onFailed;
     }
 
-    public AutoListListener<T> setOnFailed(Consumer<? super ApiException> onFailed) {
+    public AutoListObserver<T> setOnFailed(Consumer<? super ApiException> onFailed) {
         this.onFailed = onFailed;
         return this;
     }
@@ -147,7 +148,7 @@ public class AutoListListener<T> implements Observer<T> {
         return onErrors;
     }
 
-    public AutoListListener<T> setOnErrors(Consumer<? super ApiException> onErrors) {
+    public AutoListObserver<T> setOnErrors(Consumer<? super ApiException> onErrors) {
         this.onErrors = onErrors;
         return this;
     }
@@ -156,7 +157,7 @@ public class AutoListListener<T> implements Observer<T> {
         return onEnd;
     }
 
-    public AutoListListener<T> setOnEnd(Action onEnd) {
+    public AutoListObserver<T> setOnEnd(Action onEnd) {
         this.onEnd = onEnd;
         return this;
     }
@@ -165,7 +166,7 @@ public class AutoListListener<T> implements Observer<T> {
         return page;
     }
 
-    public AutoListListener<T> setPage(int page) {
+    public AutoListObserver<T> setPage(int page) {
         this.page = page;
         return this;
     }
@@ -174,7 +175,7 @@ public class AutoListListener<T> implements Observer<T> {
         return isRefresh;
     }
 
-    public AutoListListener<T> setRefresh(Boolean refresh) {
+    public AutoListObserver<T> setRefresh(Boolean refresh) {
         if (isNotNull(refresh))
             isRefresh = refresh;
         return this;
@@ -184,7 +185,7 @@ public class AutoListListener<T> implements Observer<T> {
         return items;
     }
 
-    public AutoListListener<T> setItems(Items items) {
+    public AutoListObserver<T> setItems(Items items) {
         this.items = items;
         return this;
     }
@@ -193,7 +194,7 @@ public class AutoListListener<T> implements Observer<T> {
         return onRefresh;
     }
 
-    public AutoListListener<T> setOnRefresh(Consumer<? super T> onRefresh) {
+    public AutoListObserver<T> setOnRefresh(Consumer<? super T> onRefresh) {
         this.onRefresh = onRefresh;
         return this;
     }
@@ -202,7 +203,7 @@ public class AutoListListener<T> implements Observer<T> {
         return onLoadMore;
     }
 
-    public AutoListListener<T> setOnLoadMore(Consumer<? super T> onLoadMore) {
+    public AutoListObserver<T> setOnLoadMore(Consumer<? super T> onLoadMore) {
         this.onLoadMore = onLoadMore;
         return this;
     }
@@ -211,7 +212,7 @@ public class AutoListListener<T> implements Observer<T> {
         return onComplete;
     }
 
-    public AutoListListener<T> setOnComplete(Consumer<? super T> onComplete) {
+    public AutoListObserver<T> setOnComplete(Consumer<? super T> onComplete) {
         this.onComplete = onComplete;
         return this;
     }
@@ -220,12 +221,12 @@ public class AutoListListener<T> implements Observer<T> {
         return onSuccess;
     }
 
-    public AutoListListener<T> setOnSuccess(Consumer<? super T> onSuccess) {
+    public AutoListObserver<T> setOnSuccess(Consumer<? super T> onSuccess) {
         this.onSuccess = onSuccess;
         return this;
     }
 
-    public AutoListListener<T> setAutoRefreshObserver(AutoRefreshListener autoRefreshObserver) {
+    public AutoListObserver<T> setAutoRefreshObserver(AutoRefreshListener autoRefreshObserver) {
         this.autoRefreshObserver = autoRefreshObserver;
         return this;
     }
@@ -234,11 +235,11 @@ public class AutoListListener<T> implements Observer<T> {
         return autoRefreshObserver;
     }
 
-    public AutoSwitchStatusPageObserver getAutoSwitchStatusPageObserver() {
+    public AutoSwitchStatusPageListener getAutoSwitchStatusPageObserver() {
         return autoSwitchStatusPageObserver;
     }
 
-    public AutoListListener<T> setAutoSwitchStatusPageObserver(AutoSwitchStatusPageObserver autoSwitchStatusPageObserver) {
+    public AutoListObserver<T> setAutoSwitchStatusPageObserver(AutoSwitchStatusPageListener autoSwitchStatusPageObserver) {
         this.autoSwitchStatusPageObserver = autoSwitchStatusPageObserver;
         return this;
     }
@@ -251,7 +252,7 @@ public class AutoListListener<T> implements Observer<T> {
         private Consumer<? super T> onLoadMore;
         private Consumer<? super T> onComplete;
         private AutoRefreshListener autoRefreshObserver;
-        private AutoSwitchStatusPageObserver autoSwitchStatusPageObserver;
+        private AutoSwitchStatusPageListener autoSwitchStatusPageObserver;
         private Consumer<? super ApiException> onFailed;
         private Consumer<? super ApiException> onErrors;
         private Action onEnd;
@@ -301,7 +302,7 @@ public class AutoListListener<T> implements Observer<T> {
             return this;
         }
 
-        public Builder<T> setAutoSwitchStatusPageObserver(AutoSwitchStatusPageObserver val) {
+        public Builder<T> setAutoSwitchStatusPageObserver(AutoSwitchStatusPageListener val) {
             autoSwitchStatusPageObserver = val;
             return this;
         }
@@ -312,8 +313,8 @@ public class AutoListListener<T> implements Observer<T> {
         }
 
 
-        public AutoListListener<T> build() {
-            return new AutoListListener<T>(this);
+        public AutoListObserver<T> build() {
+            return new AutoListObserver<T>(this);
         }
 
         public Builder<T> onFailed(Consumer<? super ApiException> val) {
@@ -337,7 +338,9 @@ public class AutoListListener<T> implements Observer<T> {
         }
     }
 
-
+    /**
+     * 默认失败处理
+     */
     private void defaultFailed() {
         if (handlefilter(null == getItems(), "items is not set"))
             if (0 == getItems().size()) {
@@ -354,6 +357,10 @@ public class AutoListListener<T> implements Observer<T> {
             }
     }
 
+    /**
+     * 默认错误处理
+     * 调用 @seeonErrors 方法会导致此方法失效
+     */
     private void defaultErrors() {
         if (handlefilter(null == getItems(), "items is not set"))
             if (0 == getItems().size()) {

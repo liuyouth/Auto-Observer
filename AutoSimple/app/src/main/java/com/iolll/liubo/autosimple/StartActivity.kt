@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.iolll.liubo.autosimple.ui.JavaActivity
-import com.iolll.liubo.autosimple.utils.Utils
+import com.iolll.liubo.autosimple.utils.MyUtils
 
 class StartActivity : AppCompatActivity() {
 
@@ -13,6 +13,6 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
     }
     fun startJava(view:View){
-        Utils.startAct(JavaActivity::class.java)
+        MyUtils.startAct(JavaActivity::class.java)
     }
 }

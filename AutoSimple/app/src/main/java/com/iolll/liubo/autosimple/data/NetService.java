@@ -15,5 +15,5 @@ public interface NetService {
     Observable<ApiResult> getBanner();
 
     @GET("http://140.143.242.232:8080/EchoSong/name/")
-    Observable<ApiResult<ArrayList<EchoSearch>>> echoSearchByName(@Query("name") String name, @Query("page") int page, @Query("limit") int limit);
+    Observable<ApiResult<ArrayList<EchoSearch>>> echoSearchByName(@Query("name") String name, @Query("page") int page, @Query("limit") int limit );
 }

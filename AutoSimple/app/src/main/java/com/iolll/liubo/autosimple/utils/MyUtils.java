@@ -29,7 +29,7 @@ import static android.text.TextUtils.isEmpty;
  *     desc  : Utils初始化相关
  * </pre>
  */
-public class Utils {
+public class MyUtils {
 
     //    Toast
     public static Gson gson = new Gson();
@@ -37,7 +37,7 @@ public class Utils {
     private static Toast toast = null;
     public static boolean DEBUG;
 
-    private Utils() {
+    private MyUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
@@ -47,7 +47,7 @@ public class Utils {
 //     * @param context 上下文
 //     */
 //    public static void init(Context context) {
-//        Utils.context = context.getApplicationContext();
+//        MyUtils.context = context.getApplicationContext();
 //    }
 
     /**
@@ -118,7 +118,7 @@ public class Utils {
      * @param app 应用
      */
     public static void init(@NonNull final Application app) {
-        Utils.sApplication = app;
+        MyUtils.sApplication = app;
         app.registerActivityLifecycleCallbacks(mCallbacks);
         context = app;
         DEBUG = context.getApplicationInfo() != null &&

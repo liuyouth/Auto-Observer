@@ -19,7 +19,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.NULL_ERROR;
-import static com.iolll.liubo.autosimple.utils.Utils.isNull;
+import static com.iolll.liubo.autosimple.utils.MyUtils.isNull;
 
 
 /**
