@@ -23,7 +23,8 @@ import static com.iolll.liubo.autosimple.utils.MyUtils.isNullDefault;
  * Created by LiuBo on 2018/6/15.
  */
 public class AutoListObserver<T> implements Observer<T> {
-    boolean isDebug = true;
+    private String tag = "Default";
+    boolean isDebug = false;
     private int page;
     private boolean isRefresh = false;
     private Items items;
@@ -58,8 +59,8 @@ public class AutoListObserver<T> implements Observer<T> {
         setOnComplete(builder.onComplete);
         setOnLoadMore(builder.onLoadMore);
         setAutoRefreshObserver(builder.autoRefreshObserver);
-        setOnErrors(isNullDefault(builder.onErrors, e -> defaultErrors()));
-        setOnFailed(isNullDefault(builder.onFailed, e -> defaultFailed()));
+        setOnErrors(isNullDefault(builder.onErrors,e -> defaultErrors()));
+        setOnFailed(isNullDefault(builder.onFailed,e -> defaultFailed()));
         setAutoSwitchStatusPageObserver(builder.autoSwitchStatusPageObserver);
     }
 
@@ -85,20 +86,26 @@ public class AutoListObserver<T> implements Observer<T> {
             if (handlefilter(isNull(onRefresh), "")) {
                 onRefresh.accept(t);
             }
-            if (handlefilter(isNull(autoRefreshObserver), "smartRefreshLayout  is not set"))
-                autoRefreshObserver.finishRefresh();
+            if (isDebug)
+                if (handlefilter(isNull(autoRefreshObserver), "smartRefreshLayout  is not set"))
+                    autoRefreshObserver.finishRefresh();
         } else {
             if (handlefilter(isNull(onLoadMore), "")) {
                 onLoadMore.accept(t);
 
             }
-            if (handlefilter(isNull(autoRefreshObserver), "smartRefreshLayout  is not set"))
-                autoRefreshObserver.finishLoadMore();
+            if (isDebug)
+                if (handlefilter(isNull(autoRefreshObserver), "smartRefreshLayout  is not set"))
+                    autoRefreshObserver.finishLoadMore();
         }
         if (handlefilter(isNull(onComplete), ""))
             onComplete.accept(t);
         if (isNotNull(autoSwitchStatusPageObserver))
             autoSwitchStatusPageObserver.onSuccess();
+        if (isNotNull(items, autoSwitchStatusPageObserver))
+            if (items.size() == 0)
+                autoSwitchStatusPageObserver.onEmpty();
+
     }
 
     @Override
@@ -131,6 +138,7 @@ public class AutoListObserver<T> implements Observer<T> {
     public void onComplete() {
         if (isDebug)
             System.out.println("onComplete");
+
         if (null != onEnd)
             onEnd.run();
     }
@@ -244,7 +252,16 @@ public class AutoListObserver<T> implements Observer<T> {
         return this;
     }
 
+    public String getTAG() {
+        return tag;
+    }
+
+    public void setTAG(String tag) {
+        this.tag = tag;
+    }
+
     public static final class Builder<T> {
+        private String tag = "Default";
         private int page = 1;
         private boolean isRefresh = true;
         private Items items = new Items();
@@ -259,6 +276,10 @@ public class AutoListObserver<T> implements Observer<T> {
         private Consumer<? super T> onSuccess;
 
         public Builder() {
+        }
+
+        public Builder(String tag) {
+            this.tag= tag;
         }
 
         public Builder<T> setPage(int val) {
@@ -308,7 +329,10 @@ public class AutoListObserver<T> implements Observer<T> {
         }
 
         public Builder<T> setAutoSwitchStatusPageObserver(LoadService val) {
-            autoSwitchStatusPageObserver = new AutoLoadSirPageListener(val);
+            if (isNotNull(tag)) {
+                autoSwitchStatusPageObserver = new AutoLoadSirPageListener(val, tag);
+            }else
+                autoSwitchStatusPageObserver = new AutoLoadSirPageListener(val);
             return this;
         }
 

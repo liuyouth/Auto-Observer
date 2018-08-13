@@ -7,6 +7,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -211,5 +212,14 @@ public class MyUtils {
             toast.setText(msg);
         }
         toast.show();
+    }
+
+
+    public static Drawable getDrawable(int imgId) {
+        Drawable d = getContext().getResources().getDrawable(imgId);
+        /// 这一步必须要做,否则不会显示.
+        d.setBounds(0, 0, d.getMinimumWidth(), d.getMinimumHeight());
+        return d;
+
     }
 }

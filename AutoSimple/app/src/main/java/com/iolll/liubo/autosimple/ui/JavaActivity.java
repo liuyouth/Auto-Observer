@@ -48,7 +48,7 @@ public class JavaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ScreenUtils.adaptScreen4VerticalSlide(this,750);
+        ScreenUtils.adaptScreen4VerticalSlide(this,360);
         setContentView(R.layout.activity_java);
         context = this;
         ButterKnife.bind(this);

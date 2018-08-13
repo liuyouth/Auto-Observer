@@ -4,6 +4,7 @@
     android:id="@+id/backLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.JavaActivity">
 
     <LinearLayout
@@ -13,7 +14,7 @@
 
         <EditText
             android:id="@+id/searchEdit"
-            android:layout_width="325dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:hint="搜索你想要的Echo歌曲名字"
