@@ -1,4 +1,5 @@
-package com.iolll.liubo.autosimple.compile.autoObserver.exception;
+package com.iolll.liubo.autoobserver.exception;
+
 
 import com.google.gson.JsonParseException;
 
@@ -11,14 +12,14 @@ import java.text.ParseException;
 
 import retrofit2.HttpException;
 
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.BAD_GATEWAY;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.FORBIDDEN;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.GATEWAY_TIMEOUT;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.INTERNAL_SERVER_ERROR;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.NOT_FOUND;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.REQUEST_TIMEOUT;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.SERVICE_UNAVAILABLE;
-import static com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE.UNAUTHORIZED;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.BAD_GATEWAY;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.FORBIDDEN;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.GATEWAY_TIMEOUT;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.INTERNAL_SERVER_ERROR;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.NOT_FOUND;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.REQUEST_TIMEOUT;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.SERVICE_UNAVAILABLE;
+import static com.iolll.liubo.autoobserver.exception.HTTPCODE.UNAUTHORIZED;
 
 
 /**

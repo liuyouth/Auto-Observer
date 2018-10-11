@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.iolll.liubo.autoobserver.listener.AutoSwitchStatusPageListener;
 import com.iolll.liubo.autosimple.R;
 import com.iolll.liubo.autosimple.compile.loadSirCallback.EmptyCallback;
 import com.iolll.liubo.autosimple.compile.loadSirCallback.ErrorCallback;

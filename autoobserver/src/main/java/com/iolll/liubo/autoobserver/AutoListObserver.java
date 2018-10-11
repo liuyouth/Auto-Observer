@@ -1,25 +1,27 @@
-package com.iolll.liubo.autosimple.compile.autoObserver;
+package com.iolll.liubo.autoobserver;
 
 
 import android.util.Log;
 
-import com.iolll.liubo.autosimple.compile.autoObserver.exception.ApiException;
-import com.iolll.liubo.autosimple.compile.autoObserver.exception.HTTPCODE;
-import com.iolll.liubo.autosimple.compile.autoObserver.functions.Action;
-import com.iolll.liubo.autosimple.compile.autoObserver.functions.Consumer;
-import com.iolll.liubo.autosimple.compile.autoObserver.functions.OnSubscribe;
-import com.kingja.loadsir.core.LoadService;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.iolll.liubo.autoobserver.exception.ApiException;
+import com.iolll.liubo.autoobserver.exception.HTTPCODE;
+import com.iolll.liubo.autoobserver.functions.Action;
+import com.iolll.liubo.autoobserver.functions.Consumer;
+import com.iolll.liubo.autoobserver.functions.OnSubscribe;
+import com.iolll.liubo.autoobserver.listener.AutoDialogListener;
+import com.iolll.liubo.autoobserver.listener.AutoPageData;
+import com.iolll.liubo.autoobserver.listener.AutoRefreshListener;
+import com.iolll.liubo.autoobserver.listener.AutoSwitchStatusPageListener;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import me.drakeet.multitype.Items;
 
 import static android.content.ContentValues.TAG;
-import static com.iolll.liubo.autosimple.utils.MyUtils.handlefilter;
-import static com.iolll.liubo.autosimple.utils.MyUtils.isNotNull;
-import static com.iolll.liubo.autosimple.utils.MyUtils.isNull;
-import static com.iolll.liubo.autosimple.utils.MyUtils.isNullDefault;
+import static com.iolll.liubo.autoobserver.utils.MyUtils.handlefilter;
+import static com.iolll.liubo.autoobserver.utils.MyUtils.isNotNull;
+import static com.iolll.liubo.autoobserver.utils.MyUtils.isNull;
+import static com.iolll.liubo.autoobserver.utils.MyUtils.isNullDefault;
 
 
 /**
@@ -427,12 +429,6 @@ public class AutoListObserver<T> implements Observer<T> {
             return this;
         }
 
-
-        public Builder<T> setAutoRefreshObserver(RefreshLayout val) {
-            autoRefreshObserver = new AutoSmartRefreshLayoutListener(val);
-            return this;
-        }
-
         public Builder<T> setAutoRefreshObserver(AutoRefreshListener val) {
             autoRefreshObserver = val;
             return this;
@@ -446,11 +442,6 @@ public class AutoListObserver<T> implements Observer<T> {
         public Builder<T> setAutoDialogObserver(AutoDialogListener val) {
             val.setCanceledOnTouchOutside(false);
             autoDialogObserver = val;
-            return this;
-        }
-
-        public Builder<T> setAutoSwitchStatusPageObserver(LoadService val) {
-            autoSwitchStatusPageObserver = new AutoLoadSirPageListener(val, tag);
             return this;
         }
 

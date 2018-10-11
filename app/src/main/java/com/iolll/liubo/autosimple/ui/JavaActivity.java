@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.blankj.utilcode.util.ScreenUtils;
+import com.iolll.liubo.autoobserver.AutoListObserver;
 import com.iolll.liubo.autosimple.R;
-import com.iolll.liubo.autosimple.compile.autoObserver.AutoListObserver;
+import com.iolll.liubo.autosimple.compile.autoObserver.AutoLoadSirPageListener;
+import com.iolll.liubo.autosimple.compile.autoObserver.AutoSmartRefreshLayoutListener;
 import com.iolll.liubo.autosimple.data.ApiResult;
 import com.iolll.liubo.autosimple.data.DataManager;
 import com.iolll.liubo.autosimple.data.echo.EchoSearchViewBinder;
@@ -69,8 +71,8 @@ public class JavaActivity extends AppCompatActivity {
                 .setOnLoadMoreListener(refreshLayout -> getData());
         AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this));
         echoSearchByNameObserver = new AutoListObserver.Builder<ApiResult<ArrayList<EchoSearch>>>()
-                .setAutoSwitchStatusPageObserver(LoadSir.getDefault().register(smartRefreshLayout, v -> getData()))
-                .setAutoRefreshObserver(smartRefreshLayout)
+                .setAutoSwitchStatusPageObserver(new AutoLoadSirPageListener(LoadSir.getDefault().register(smartRefreshLayout, v -> getData())))
+                .setAutoRefreshObserver(new AutoSmartRefreshLayoutListener(smartRefreshLayout))
                 .setItems(items)
                 .onRefresh(arrayListApiResult -> items.clear())
                 .onComplete(arrayListApiResult -> {

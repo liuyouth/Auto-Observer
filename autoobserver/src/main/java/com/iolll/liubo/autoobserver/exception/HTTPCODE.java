@@ -1,4 +1,4 @@
-package com.iolll.liubo.autosimple.compile.autoObserver.exception;
+package com.iolll.liubo.autoobserver.exception;
 
 /**
  * Created by LiuBo on 2018/5/18.

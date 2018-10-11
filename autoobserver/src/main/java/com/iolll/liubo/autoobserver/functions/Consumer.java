@@ -1,4 +1,4 @@
-package com.iolll.liubo.autosimple.compile.autoObserver.functions;
+package com.iolll.liubo.autoobserver.functions;
 
 /**
  * 无异常 Consumer

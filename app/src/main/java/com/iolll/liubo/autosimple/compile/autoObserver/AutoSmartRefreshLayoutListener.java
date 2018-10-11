@@ -1,5 +1,6 @@
 package com.iolll.liubo.autosimple.compile.autoObserver;
 
+import com.iolll.liubo.autoobserver.listener.AutoRefreshListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 /**

@@ -1,4 +1,4 @@
-package com.iolll.liubo.autosimple.compile.autoObserver;
+package com.iolll.liubo.autoobserver.listener;
 
 /**
  * Created by LiuBo on 2018/6/15.
