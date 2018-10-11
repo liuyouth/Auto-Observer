@@ -1,4 +1,4 @@
-# Auto-Observer
+# Auto-Observer 0.2
 
 基于RxJava 2.0 
 Auto-Observer 的作用，让开发者更专注于业务代码，减少冗余代码，  
@@ -66,7 +66,17 @@ Auto-Observer 的作用，让开发者更专注于业务代码，减少冗余代
     }
 ```
 
-
+版本变更
+# 0.2
+1. 添加了OnSubscribe 接口 将绑定事件暴露出来
+2. 添加AutoPageData 接口 由列表返回的实体实现，用户判断是否含有下一页
+3. AutoRefreshListener 添加 是否含有下一页参数，方便用户一键设置。
+4. AutoDialogListener 弹框监听，下个版本可用。
+# 0.1
+1. 新建工程不过多描述
+2. AutoListObserver 自动列表观察者 在列表页面使用该Observer 绑定网络请求
+3. AutoSwitchStatusPageListener 切换页面监听，需要用户自己实现。自己的页面切换是用什么方式实现
+4. AutoRefreshListener 刷新加载监听，同上面向接口编程，不指定刷新加载怎么实现，用户可以自己定义
 
 # 交流
 联系方式：faithll@163.com

@@ -1,0 +1,35 @@
+package com.iolll.liubo.iolllmusic.data.model.echo
+
+
+data class EchoSearch(
+    val id: String,
+    val name: String,
+    val length: String,
+    val pic: String,
+    val channel_id: String,
+    val user_id: String,
+    val source: String,
+    val web_source: String,
+    val status_mask: String,
+    val commend_time: String,
+    val status: String,
+    val share_count: String,
+    val like_count: String,
+    val exchange_count: String,
+    val comment_count: String,
+    val view_count: String,
+    val check_visition: Int,
+    val translate_mask: Int,
+    val cover_song_id: Int,
+    val cover_song_type: Int,
+    val sound_type: Int,
+    val create_time: Int,
+    val parent_id: String,
+    val info: String,
+    val pic_100: String,
+    val pic_200: String,
+    val pic_500: String,
+    val pic_640: String,
+    val pic_750: String,
+    val pic_1080: String
+)
