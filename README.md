@@ -1,5 +1,7 @@
-# Auto-Observer 0.2  ![](https://img.shields.io/badge/Version-0.2-green.svg) ![](https://img.shields.io/badge/language- java | kotlin -orange.svg)
-[![Github Releases (by Release)](https://img.shields.io/github/downloads/atom/atom/v0.2.0/total.svg)](https://raw.githubusercontent.com/liuyouth/Auto-Observer/master/AutoObserver.jar)
+# Auto-Observer 0.2  
+![](https://img.shields.io/badge/Version-0.2-green.svg) 
+![](https://img.shields.io/badge/language-java|kotlin-orange.svg) 
+[![Github Pre-Releases](https://img.shields.io/github/downloads-pre/atom/atom/latest/total.svg)](https://github.com/liuyouth/Auto-Observer/raw/master/AutoObserver.jar)
 
 
 
