@@ -1,6 +1,7 @@
-# Auto-Observer 0.2
- ![](https://img.shields.io/badge/Version-0.2-green.svg)
- ![](https://img.shields.io/badge/language-{java,kotlin}-orange.svg)
+# Auto-Observer 0.2  ![](https://img.shields.io/badge/Version-0.2-green.svg)
+                     ![](https://img.shields.io/badge/language-java|kotlin-orange.svg)
+
+
 基于RxJava 2.0 
 Auto-Observer 的作用，让开发者更专注于业务代码，减少冗余代码，  
 使工程更加健壮可通过AOP的方式进行全局管控  
